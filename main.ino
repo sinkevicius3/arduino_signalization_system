@@ -67,8 +67,8 @@ void setup() {
   TCCR1B |= (1 << CS12) | (1 << CS10);  // set prescaler 1024, this also starts the timer
   interrupts();
 
-  attachInterrupt(digitalPinToInterrupt(SYSTEM_BTN_PIN), sys_btn_isr, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(CALIBR_BTN_PIN), cal_btn_isr, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(SYSTEM_BTN_PIN), sys_btn_isr, FALLING);
+  attachInterrupt(digitalPinToInterrupt(CALIBR_BTN_PIN), cal_btn_isr, FALLING);
 
   if (start_on) {
     set_state(ON);
@@ -150,7 +150,7 @@ ISR(TIMER1_COMPA_vect) {
 
 void sys_btn_isr() {
   unsigned long now = millis();
-  if (now - last_btn_interrupt_time >= debounce_time && digitalRead(SYSTEM_BTN_PIN) == LOW) {
+  if (now - last_btn_interrupt_time >= debounce_time) {
     sys_btn_flag = true;
   }
   last_btn_interrupt_time = now;
@@ -158,7 +158,7 @@ void sys_btn_isr() {
 
 void cal_btn_isr() {
   unsigned long now = millis();
-  if (now - last_cal_interrupt_time >= debounce_time && digitalRead(CALIBR_BTN_PIN) == LOW) {
+  if (now - last_cal_interrupt_time >= debounce_time) {
     cal_btn_flag = true;
   }
   last_cal_interrupt_time = now;
