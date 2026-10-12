@@ -50,7 +50,7 @@ System uses 16-bit Timer1 as its timer. Timer1 uses CTC mode with a prescaler of
   TCCR1B |= (1 << CS12) | (1 << CS10);  // set prescaler 1024, this also starts the timer
 ```
 
-## 6. EEPROM Storage
+## EEPROM Storage
 
 EEPROM is used to preserve the system state and calibration threshold across power cycles. Magic number and version are used to validate the stored configuration.
 
@@ -62,3 +62,7 @@ EEPROM is used to preserve the system state and calibration threshold across pow
 | 1 | 1 byte | Version | Identifies the EEPROM data format |
 | 2 | 1 byte | System state | `0` = OFF, `1` = ON |
 | 3 onward | `sizeof(int)` bytes | Light threshold | Stores the calibrated LDR threshold |
+
+## Wiring
+
+![Wiring image](wiring.png)
