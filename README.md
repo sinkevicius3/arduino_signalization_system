@@ -66,3 +66,5 @@ EEPROM is used to preserve the system state and calibration threshold across pow
 ## Wiring
 
 ![Wiring image](wiring.png)
+
+Since there is no Laser module in Tinkercad, wiring contains a diode in place of the laser.
